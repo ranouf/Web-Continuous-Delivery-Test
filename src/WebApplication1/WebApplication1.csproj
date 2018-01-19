@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\webjobs\WebJob1\WebJob1.csproj" />
   </ItemGroup>
 
+  <Target Name="PostpublishScript" AfterTargets="Publish">
+    <Exec Command="dotnet publish ..\WebJob1\ -o $(PublishDir)App_Data\Jobs\Triggered\WebJob1" />
+  </Target>
+  
 </Project>

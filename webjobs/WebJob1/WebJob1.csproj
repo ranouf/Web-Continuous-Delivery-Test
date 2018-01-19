@@ -13,8 +13,4 @@
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0-beta4" />
   </ItemGroup>
   
-  <Target Name="PostpublishScript" AfterTargets="Publish">
-    <Exec Command="dotnet publish ..\$(AssemblyName)\ -o $(PublishDir)App_Data\Jobs\Triggered\$(AssemblyName)" />
-  </Target>
-  
 </Project>

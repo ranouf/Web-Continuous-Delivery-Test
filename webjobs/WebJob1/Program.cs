@@ -28,7 +28,7 @@ namespace WebJob1
         [NoAutomaticTrigger]
         public static void Execute(TextWriter logger)
         {
-            logger.WriteLine("Hello World");
+            logger.WriteLine("Hello World 2");
         }
     }
 }

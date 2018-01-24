@@ -1,20 +1,13 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# How to use Azure Continuous delivery for WebJob with Asp.Net Core?
+You have probably noticed that it's not possible anymore to deploy a WebJob from Visual Studio with Asp.net Core. You currently need to publish the WebJob in a folder, zip the folder and add it from the Azure Portal, which is really not efficient.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
-
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Steps:
+## 1/ Configure Azure
+On <a href="https://portal.azure.com">Azure Portal</a>, go to you WebApp and select 'Deployment options' and then follow the instructions.
+## 2/ Configure the WebApp csproj
+Edit your WebApp csproj and add the following line:
+```
+  <Target Name="PostpublishScript" AfterTargets="Publish">
+    <Exec Command="dotnet publish ..\..\[FACULTATIVE FOLDER]\[WEBJOB NAME]\ -o $(PublishDir)App_Data\Jobs\[Triggered || Continuous]\[WEBJOB NAME]" />
+  </Target>
+```
